@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ThemeContext } from '../contexts/ThemedContext';
+import { AuthContext } from '../contexts/AuthContext';
 
 export default class Navbar extends Component {
   //using 'static contextType = ThemContext' looks up the tree for the ThemeContext.Provider
@@ -8,22 +9,26 @@ export default class Navbar extends Component {
   //static contextType = ThemeContext;
   render() {
     return (
-      <ThemeContext.Consumer>{(context) => {
-        const { isLightTheme, light, dark } = context;
-        const theme = isLightTheme ? light : dark;
-        return(
-          <nav style={{ background: theme.ui, color: theme.syntax }}>
-            <h1>
-              Context App
+      <AuthContext.Consumer>{(authContext) => (
+        <ThemeContext.Consumer>{(themeContext) => {
+          const { isLightTheme, light, dark } = themeContext;
+          const theme = isLightTheme ? light : dark;
+          return (
+            <nav style={{ background: theme.ui, color: theme.syntax }}>
+              <h1>
+                Context App
           </h1>
-            <ul>
-              <li>Home</li>
-              <li>About</li>
-              <li>Contact</li>
-            </ul>
-          </nav>
-        )
-      }}</ThemeContext.Consumer>
+              <ul>
+                <li>Home</li>
+                <li>About</li>
+                <li>Contact</li>
+              </ul>
+            </nav>
+          )
+        }}</ThemeContext.Consumer>
+      )}
+      </AuthContext.Consumer>
+
     );
   }
 }
