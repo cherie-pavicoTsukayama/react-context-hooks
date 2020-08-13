@@ -5,7 +5,7 @@ export default class Navbar extends Component {
     return (
       <nav>
         <h1>
-          context App
+          Context App
         </h1>
         <ul>
           <li>Home</li>
