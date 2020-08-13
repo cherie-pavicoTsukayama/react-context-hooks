@@ -16,6 +16,13 @@ class ThemedContextProvider extends Component {
       bg: '#555'
     }
   }
+  render() {
+    return(
+      <ThemeContext.Provider value={{...this.state}}>
+        {this.props.children}
+      </ThemeContext.Provider>
+    )
+  }
 
-  
 }
+ export default ThemedContextProvider;
